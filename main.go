@@ -101,7 +101,7 @@ func main() {
 	}
 
 	// Realizar la búsqueda infija en el árbol
-	fmt.Println("Búsqueda infija:")
+	fmt.Print("Búsqueda")
 	inorderTraversal(root)
 	fmt.Println()
 }
