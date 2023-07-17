@@ -1,17 +1,27 @@
 package main
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+	"os"
+)
 
+// Estructura del nodo
 type Node struct {
 	Value string
 	Child []*Node
 }
 
+// Estructura del arbol
 type Tree struct {
 	start, top *Node
 }
 
-// Recorre el árbol de forma infija (in-order)
+var valid bool = true
+var cnt int
+var input []byte
+
+// Recorre el árbol de forma infija (in-order) (modificada)
 func inorderTraversal(node *Node) {
 	if node == nil {
 		return
@@ -22,11 +32,23 @@ func inorderTraversal(node *Node) {
 			inorderTraversal(child) // Recorre los otros hijos del nodo actual
 		}
 	} else {
+		if input[cnt] != []byte(node.Value)[0] {
+			fmt.Println("NDO")
+			valid = false
+		}
 		fmt.Printf("%s ", node.Value)
+		cnt++
 	}
 }
 
 func main() {
+
+	// pedir datos
+	scanner := bufio.NewScanner(os.Stdin)
+	fmt.Printf("Ingresa la cadena a reconocer: ")
+	scanner.Scan()
+	input = scanner.Bytes()
+
 	// Raiz del arbol
 	root := &Node{
 		Value: "S",
@@ -101,7 +123,8 @@ func main() {
 	}
 
 	// Realizar la búsqueda infija en el árbol
-	fmt.Print("Búsqueda")
+	fmt.Print("Búsqueda: ")
 	inorderTraversal(root)
 	fmt.Println()
+	fmt.Printf("Expresión válida: %v\n", valid)
 }
