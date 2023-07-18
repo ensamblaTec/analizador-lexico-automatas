@@ -20,14 +20,6 @@ type Tree struct {
 	start, top *Node
 }
 
-func addChild(node, child *Node) {
-	if child == nil {
-		return
-	}
-
-	node.Child = append(node.Child, child)
-}
-
 var valid bool = true
 var cnt int
 var input []byte
@@ -43,6 +35,7 @@ func inorderTraversal(node *Node) {
 			inorderTraversal(child) // Recorre los otros hijos del nodo actual
 		}
 	} else {
+		// Verificar si la entrada es correcta
 		if cnt < len(input) && input[cnt] != []byte(node.Value)[0] {
 			valid = false
 		}
@@ -51,27 +44,19 @@ func inorderTraversal(node *Node) {
 	}
 }
 
-func create(data string) *Node {
-	lines := strings.Split(data, "\n")
-	for v := range lines {
-		fmt.Println(v)
-	}
-
-	return &Node{}
-}
-
+// Método para crear el árbol
 func createLexTree(data string) *Node {
 	lines := strings.Split(data, "\n")
 	nodesMap := make(map[string]*Node)
 
-	// Primero, creamos todos los nodos sin hijos
+	// Crear todos los nodos sin hijos
 	for _, line := range lines {
 		parts := strings.Split(line, "|")
 		value := parts[0]
 		nodesMap[value] = &Node{Value: value}
 	}
 
-	// Luego, agregamos los hijos a los nodos
+	// Agregar los hijos a los nodos
 	for _, line := range lines {
 		parts := strings.Split(line, "|")
 		value := parts[0]
@@ -95,6 +80,7 @@ func createLexTree(data string) *Node {
 	return nodesMap["S"]
 }
 
+// Método para imprimir el árbol en forma identada
 func printLex(node *Node, depth int) {
 	if node == nil {
 		return
@@ -107,11 +93,12 @@ func printLex(node *Node, depth int) {
 }
 
 func main() {
+	// Obtener los datos del documento
 	data := strings.Trim(utils.ReadFile("ejer1.txt"), "\n")
-	// data := "S|M,N,Z|\nM|x,Z,b|\nZ|b,a|\nN|b|\nZ|X,N|\nX|a|\nN|a,b,x|"
-	// fmt.Println(data)
+	// Crear el arbol
 	lex := createLexTree(data)
-	// fmt.Println(utils.ReadFile("ejer1.txt"))
+
+	// Imprimir el arbol
 	fmt.Println("Arbol léxico creado:")
 	printLex(lex, 0)
 
@@ -121,84 +108,84 @@ func main() {
 	scanner.Scan()
 	input = scanner.Bytes()
 
-	// // Raiz del arbol
-	// root := &Node{
-	// 	Value: "S",
-	// 	Child: []*Node{
-	// 		{
-	// 			Value: "M",
-	// 			Child: []*Node{
-	// 				{
-	// 					Value: "x",
-	// 					Child: nil,
-	// 				},
-	// 				{
-	// 					Value: "Z",
-	// 					Child: []*Node{
-	// 						{
-	// 							Value: "b",
-	// 							Child: nil,
-	// 						},
-	// 						{
-	// 							Value: "a",
-	// 							Child: nil,
-	// 						},
-	// 					},
-	// 				},
-	// 				{
-	// 					Value: "b",
-	// 					Child: nil,
-	// 				},
-	// 			},
-	// 		},
-	// 		{
-	// 			Value: "N",
-	// 			Child: []*Node{
-	// 				{
-	// 					Value: "b",
-	// 					Child: nil,
-	// 				},
-	// 			},
-	// 		},
-	// 		{
-	// 			Value: "Z",
-	// 			Child: []*Node{
-	// 				{
-	// 					Value: "X",
-	// 					Child: []*Node{
-	// 						{
-	// 							Value: "a",
-	// 							Child: nil,
-	// 						},
-	// 					},
-	// 				},
-	// 				{
-	// 					Value: "N",
-	// 					Child: []*Node{
-	// 						{
-	// 							Value: "a",
-	// 							Child: nil,
-	// 						},
-	// 						{
-	// 							Value: "b",
-	// 							Child: nil,
-	// 						},
-	// 						{
-	// 							Value: "x",
-	// 							Child: nil,
-	// 						},
-	// 					},
-	// 				},
-	// 			},
-	// 		},
-	// 	},
-	// }
-
-	// // fmt.Println(root)
-
-	// Realizar la búsqueda infija en el árbol
+	// Realizar la búsqueda en el árbol
 	fmt.Print("Búsqueda: ")
 	inorderTraversal(lex)
 	fmt.Println()
 	fmt.Printf("Expresión válida: %v\n", valid)
 }
+
+// // Raiz del arbol
+// root := &Node{
+// 	Value: "S",
+// 	Child: []*Node{
+// 		{
+// 			Value: "M",
+// 			Child: []*Node{
+// 				{
+// 					Value: "x",
+// 					Child: nil,
+// 				},
+// 				{
+// 					Value: "Z",
+// 					Child: []*Node{
+// 						{
+// 							Value: "b",
+// 							Child: nil,
+// 						},
+// 						{
+// 							Value: "a",
+// 							Child: nil,
+// 						},
+// 					},
+// 				},
+// 				{
+// 					Value: "b",
+// 					Child: nil,
+// 				},
+// 			},
+// 		},
+// 		{
+// 			Value: "N",
+// 			Child: []*Node{
+// 				{
+// 					Value: "b",
+// 					Child: nil,
+// 				},
+// 			},
+// 		},
+// 		{
+// 			Value: "Z",
+// 			Child: []*Node{
+// 				{
+// 					Value: "X",
+// 					Child: []*Node{
+// 						{
+// 							Value: "a",
+// 							Child: nil,
+// 						},
+// 					},
+// 				},
+// 				{
+// 					Value: "N",
+// 					Child: []*Node{
+// 						{
+// 							Value: "a",
+// 							Child: nil,
+// 						},
+// 						{
+// 							Value: "b",
+// 							Child: nil,
+// 						},
+// 						{
+// 							Value: "x",
+// 							Child: nil,
+// 						},
+// 					},
+// 				},
+// 			},
+// 		},
+// 	},
+// }
+
+// // fmt.Println(root)
