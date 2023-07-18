@@ -15,6 +15,10 @@
 | Leer de un archivo | ✅ |
 | Menu | ☑️ |
 
+## Uso
+
+PENDIENTE
+
 ![Imagen de arbol a duplicar](https://github.com/g-code99/analizador-lexico-automatas/blob/main/assets/img.png)
 
 ### Logs
