@@ -5,11 +5,13 @@
 ### Simbologia
 
 | Nombre | Significado |
+| ------ | ----------- |
 | Completo | ✅ |
 | Iniciado | ⚠️ |
 | Pendiente | ☑️ |
 
 | Nombre | Estado |
+| ------ | ------ |
 | Crear Árbol Léxico | ✅ |
 | Verificar la cadena | ✅ |
 | Leer de un archivo | ✅ |
