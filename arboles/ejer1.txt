@@ -1,0 +1,7 @@
+S|M,N,Z
+M|x,Z,b
+Z|b,a
+N|b
+Z|X,N
+X|a
+N|a,b,x

@@ -4,8 +4,6 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-
-	"github.com/g-code99/arboles/analizador-lexico-automatas/utils"
 )
 
 // Estructura del nodo
@@ -17,14 +15,6 @@ type Node struct {
 // Estructura del arbol
 type Tree struct {
 	start, top *Node
-}
-
-func addChild(node, child *Node) {
-	if child == nil {
-		return
-	}
-
-	node.Child = append(node.Child, child)
 }
 
 var valid bool = true
@@ -52,9 +42,6 @@ func inorderTraversal(node *Node) {
 }
 
 func main() {
-	// Leer archivo
-	line := utils.ReadFile("ejer1.txt")
-	fmt.Println(line)
 
 	// pedir datos
 	scanner := bufio.NewScanner(os.Stdin)
@@ -141,3 +128,4 @@ func main() {
 	fmt.Println()
 	fmt.Printf("Expresión válida: %v\n", valid)
 }
+
