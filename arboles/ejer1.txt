@@ -1,7 +1,7 @@
-S|M,N,Z
-M|x,Z,b
-Z|b,a
-N|b
-Z|X,N
-X|a
-N|a,b,x
+S|M,N,Y|
+M|x,Z,b|
+Z|b,a|
+N|b|
+Y|X,A|
+X|a|
+A|a,b,x|
